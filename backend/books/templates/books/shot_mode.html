@@ -1,0 +1,164 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="{% static 'books/fonts/icomoon/style.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/bootstrap.min.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/jquery-ui.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/owl.carousel.min.css' %}" />
+<link
+  rel="stylesheet"
+  href="{% static 'books/css/owl.theme.default.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'books/css/owl.theme.default.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'books/css/jquery.fancybox.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'books/css/bootstrap-datepicker.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'books/fonts/flaticon/font/flaticon.css' %}"
+/>
+<link rel="stylesheet" href="{% static 'books/css/aos.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/style.css' %}" />
+
+<!--화면 시작-->
+
+<!-- 유저 정보 -->
+<div id="username" style="display: none;">{{ request.user.username }}</div>
+<!-- 로그아웃 버튼 -->
+<!--
+<form action="{% url 'accounts:logout' %}" method="POST" class="d-inline">
+  {% csrf_token %}
+  <input type="submit" name="" id="" value="로그아웃">
+  <!-- <button class="btn btn-link btn-light">dummy 버튼</button> -->
+</form>
+
+<!-- 사진촬영버튼 -->
+<div class="camera">
+  <button id="camera" class="btn btn-link btn-light">
+    그림동화책 촬영
+  </button>
+</div>
+
+<!-- 사진 업로드 -->
+<form autocomplete="off" id="post_form" action="{% url 'books:imageCaptioning' %}" method="POST" enctype="multipart/form-data">
+  <input id="myInput" type="text" name="myBooks" placeholder="책 이름 입력">
+  <input type="file" name="file_id" id="file_id" class="btn btn-light" change="loadFile(event)">
+  <button id="post_btn">완료</button>
+</form>
+  <h5 id="result"></h5>
+  <img id="output"/>
+
+<!-- axios cdn -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  
+  var camera = document.getElementById("camera")
+  var username = document.getElementById("username")
+
+  const API_BASE_URL = "http://127.0.0.1:8000/"
+  
+  camera.addEventListener("click", function () {
+    // 여기서 Android로 넘겨주세요!!
+    ARIAPP.camera(username.innerText);
+    window.location.replace('http://j4a402.p.ssafy.io:8000/ic/android/result/');
+  })
+  
+  // 여기다 axios로 get요청으로 페이지전환을 해버린다.(망함)
+  // axios.get(API_BASE_URL+"ic/android/result/")
+  
+  var loadFile = function(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+  
+
+  var post_btn = document.getElementById("post_btn")
+  var file = document.getElementById("post_form").enctype
+  
+  var book_title = ddocument.getElementById("myInput")
+  
+  post_btn.addEventListener("click", function() {
+    axios.post(API_BASE_URL+"ic/", file, book_title)
+    // .then((res) => {
+    //     alert(res)
+    //     console.log("response: " + res)
+    //     var result = document.getElementById("result")
+    //     result.value = res["doc_file"]
+    //   })
+    //   .catch((err) => {
+    //     alert(err)x`
+    //     console.log(err)
+    //   })
+  })
+  // 이미지 URL 경로 보내주기 위한 코드
+  //   const params = new URLSearchParams();
+  //   params.append('img_url', output.src);
+
+  //   axios({
+  //     method: 'post',
+  //     url: API_BASE_URL+'ic/',
+  //     data: params
+  //   })
+  //   .then(function (response) {
+  //     console.log(response)
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error)
+  //   });
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+  };
+
+
+</script>
+<style>
+  form {
+    text-decoration: none;
+  }
+  
+  .camera {
+    padding: 10% 0% 15% 0%;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #camera {
+    height: 30%;
+    width: 100%;
+    font-size: 25px;
+  }
+  
+  #myInput {
+    padding-bottom: 3%;
+    width: 70%;
+    border-radius: 10px;
+    
+    margin: 0% 0% 10% 0%;
+    
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #file_id {
+    margin: 0% 10% 0% 3%;
+  }
+  
+  #post_btn {
+    border-radius: 10px;
+  }
+  
+</style>
+{% endblock %}

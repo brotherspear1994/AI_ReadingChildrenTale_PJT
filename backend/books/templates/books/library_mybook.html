@@ -1,0 +1,77 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="{% static 'books/fonts/icomoon/style.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/bootstrap.min.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/jquery-ui.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/owl.carousel.min.css' %}" />
+<link
+  rel="stylesheet"
+  href="{% static 'books/css/owl.theme.default.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'books/css/owl.theme.default.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'books/css/jquery.fancybox.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'books/css/bootstrap-datepicker.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'books/fonts/flaticon/font/flaticon.css' %}"
+/>
+<link rel="stylesheet" href="{% static 'books/css/aos.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/style.css' %}" />
+
+<!--화면 시작-->
+<div class="title">
+  <h1 class="heading" style="color: slateblue">{{ book.title }}</h1>
+</div>
+<div class="img-wrapper">
+  <img src="/media/{{ book.thumbnail_url }}" />
+</div>
+<div class="text-wrapper">
+  <div class="row">
+    <div class="col-3 text-center">글쓴이</div>
+    <div class="col-3 dark">{{ book.author }}</div>
+
+    <div class="col-3 text-center">만든이</div>
+    <div class="col-3 dark">{{ book.creator }}</div>
+  </div>
+  <div class="row">
+    <div class="col-3 text-center">줄거리</div>
+    <div class="col-9 dark">{{ book.summary }}</div>
+  </div>
+</div>
+
+<style>
+  .title {
+    padding: 2.5%;
+  }
+  .img-wrapper {
+    width: 90%;
+    height: 20%;
+    margin: 0px auto;
+    padding: 1%;
+  }
+  .text-wrapper {
+    padding: 2% 2%;
+  }
+  .img-wrapper>img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .dark {
+    color: #140133;
+  }
+</style>
+{% endblock %}

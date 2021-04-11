@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="{% static 'books/fonts/icomoon/style.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/bootstrap.min.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/jquery-ui.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/owl.carousel.min.css' %}" />
+<link
+  rel="stylesheet"
+  href="{% static 'books/css/owl.theme.default.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'books/css/owl.theme.default.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'books/css/jquery.fancybox.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'books/css/bootstrap-datepicker.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'books/fonts/flaticon/font/flaticon.css' %}"
+/>
+<link rel="stylesheet" href="{% static 'books/css/aos.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/style.css' %}" />
+
+<!--화면 시작-->
+<h3>성공하셨습니다.</h3>
+<a href="{% url 'books:index' %}"
+  >메인/a>
+  <a href="{% url 'books:library' %}">라이브러리</a>
+  {% endblock %}</a
+>

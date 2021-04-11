@@ -1,0 +1,88 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<link
+  href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="{% static 'books/fonts/icomoon/style.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/bootstrap.min.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/jquery-ui.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/owl.carousel.min.css' %}" />
+<link
+  rel="stylesheet"
+  href="{% static 'books/css/owl.theme.default.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'books/css/owl.theme.default.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'books/css/jquery.fancybox.min.css' %}"
+/>
+<link rel="stylesheet" href="{% static 'books/css/style.css' %}" />
+<!-- 내용 시작 -->
+    <h2 class="pagetitle">ARI가 읽어주는 구연동화</h2>
+    <img id="bookimg" src="/media/{{ form_img.img_url }}">
+    <!-- <h5>{{ form }}</h5> -->
+    <h3 class="content">ARI가 인식한 줄거리</h3>
+    <h5 class="caption">{{ form_img.caption }}</h5>
+    <!-- TTS audio -->
+    
+    <div class="audios">
+      <h6>TTS 오디오(한국어)</h6>
+      <audio controls>
+        <source src="{{ kr_tts_path }}" type="audio/ogg">
+        이 문장은 여러분의 브라우저가 audio 태그를 지원하지 않을 때 화면에 표시됩니다!
+        </audio>
+      <h6>TTS 오디오(영어)</h6>
+      <audio controls>
+        <source src="{{ tts_path }}" type="audio/ogg">
+        이 문장은 여러분의 브라우저가 audio 태그를 지원하지 않을 때 화면에 표시됩니다!
+        </audio>
+      <!-- VC audio -->
+      <h6>VC 오디오</h6>
+      <audio controls>
+        <source src="{{ vc_path }}" type="audio/ogg">
+        이 문장은 여러분의 브라우저가 audio 태그를 지원하지 않을 때 화면에 표시됩니다!
+        </audio>
+    </div>
+     <script>
+      var text = document.getElementById("text")
+      console.log(text)
+    </script>
+    <style>
+      .pagetitle {
+        display:table;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0% 0% 5% 0%;
+      }
+      
+      #bookimg {
+        width: 70%;
+        height: 40%;
+        object-fit: cover;
+        
+        display:table;
+        margin-left: auto;
+        margin-right: auto;
+        
+        padding-bottom: 5%;
+      }
+      
+      .content {
+        margin-left: 3%;
+      }
+      
+      .caption {
+        display: table;
+        margin-left: auto;
+        margin-right: auto;
+        
+        margin-bottom: 3%;
+      }
+      .audios {
+        margin-left: 10%;
+      }
+    </style>
+{% endblock %}

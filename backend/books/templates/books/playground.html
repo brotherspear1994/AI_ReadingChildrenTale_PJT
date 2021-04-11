@@ -1,0 +1,55 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'books/css/bootstrap.min.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/jquery-ui.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/style.css' %}" />
+<!-- AR.js by @jerome_etienne - github: https://github.com/jeromeetienne/ar.js - info: https://medium.com/arjs/augmented-reality-in-10-lines-of-html-4e193ea9fdbf -->
+<!--a-frame 추가-->
+<script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script>
+
+<!--body-->
+<div class="camera-wrapper">
+  <!--Creating a 3D Scene-->
+  <a-scene embedded arjs>
+    <!--Adding Simple Content-->
+    <a-assets>
+      <img id="ari" src={% static 'img/Ari.png'%}>
+      <a-asset-item id="donut" src={% static 'obj/pink_glazed_donut/scene.gltf'%}></a-asset-item>
+    </a-assets>
+
+  <!-- Using the asset management system. -->
+    <!--Adding the AR -->
+    <a-marker id="a-marker" preset="pattern" type="pattern" url={% static 'marker/ari.patt'%}>
+      <a-image src="#ari" height="-2.5"></a-image>
+    </a-marker>
+  </a-scene>
+</div>
+<div class="buttons-ar">
+  <div id="btn-back" class="btn btn-primary" 
+      onclick="location.href='{% url 'books:index' %}'">← 뒤로가기</div>
+  <div id="btn-toggle" class="btn btn-danger">아리</div>
+</div>
+<style>
+    .buttons-ar {
+      position: fixed;
+      left: 1%;
+      right: 0;
+      top: 1%;
+      text-align: left;
+    }
+</style>
+
+<script src="{% static 'settings/js/jquery-3.3.1.min.js' %}"></script>
+<script type="text/javascript">
+  $('#btn-toggle').click(function () {
+    var txt = $(this).text();
+    if(txt == '아리'){
+      $(this).text('도넛');
+      $('#a-marker').html('<a-gltf-model src="#donut"></a-gltf-model>');
+    }else{
+      $(this).text('아리');
+      
+      $('#a-marker').html('<a-image src="#ari" height="-1.5"></a-image>');
+    }
+  });
+</script>

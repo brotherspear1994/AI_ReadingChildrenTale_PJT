@@ -1,0 +1,113 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>ARI 구연동화</title>
+    <!-- bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    
+    <!--template-->
+  </head>
+  <body style="font-family: 'Poor Story', cursive;">
+    <!--  -->
+    <!--  -->
+    <div class="site-wrap">
+      <!-- 상단 bar -->
+      <div id="sticky-wrapper" class="sticky-wrapper" style="height: 20px">
+        <header
+          class="site-navbar light js-sticky-header site-navbar-target"
+          role="banner"
+        >
+          {% if request.user.is_authenticated %}
+          <div class="mb-0 site-logo">
+            <!--상단바 텍스트 부분. 손 더 봐야함.-->
+            <a href="{% url 'books:index' %}" class="mb-0 mt-4 ml-2">
+              <img src={% static 'img/Ari.PNG' %} style="width: 30px; height:auto;">
+              <span style="color: palevioletred">Ari </span><span class="text-primary">구연동화</span> 
+            </a>
+          </div>
+          {% endif %}
+        </header>
+      </div>
+      <!-- content -->
+      <div
+        class="hero-v1"
+        style="padding: 4rem 0 8rem 0; border-bottom-right-radius: 30%"
+      >
+        {% block content %} {% endblock %}
+      </div>
+
+      <!-- 하단 navbar -->
+      {% if request.user.is_authenticated %}
+      <nav
+        id="downbar"
+        class="row align-items-center"
+      >
+        <div class="col-4 icon-wrapper" onclick="location.href='{% url 'books:index' %}'">
+            <img class="downbar_icon" src={% static 'svg/daily-health-app.svg'%}>
+        </div>
+        <div class="col-4 icon-wrapper"  onclick="location.href='{% url 'books:library' %}'">
+            <img class="downbar_icon" src={% static 'svg/books.svg'%}>
+        </div>
+        <div class="col-4 icon-wrapper" onclick="location.href='{% url 'settings:settings' %}'">
+            <img class="downbar_icon" src={% static 'svg/settings.svg'%}>
+        </div>
+      </nav>
+      {% else %}
+
+        <div class="col-4 icon-wrapper" onclick="location.href='{% url 'books:index' %}'">
+            <img class="downbar_icon" src={% static 'svg/daily-health-app.svg'%}>
+        </div>
+      </nav>
+      {% endif %}
+    </div>
+    <!--/site wrap-->
+    <script>
+      function toHome() {
+        // 나중에 변경해주어야 한다!!
+        location.href = 'http://127.0.0.1:8000/';
+      }
+    </script>
+    <script src="https://npmcdn.com/axios/dist/axios.min.js"></script>
+  </body>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+    #downbar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width:100%;
+      height:10%;
+      text-align: center;
+      margin-right: 0px;
+      margin-left: 0px;
+      background: rgba(255,255,255,0.6);
+    }
+    div.icon-wrapper{
+      height: 100%;
+    }
+    img.downbar_icon {
+      padding: 7%;
+      position: absolute;
+      height: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    h1,h2,h3,h4,h5,h6{
+      font-family: 'Poor Story', cursive;
+    }
+  </style>
+</html>

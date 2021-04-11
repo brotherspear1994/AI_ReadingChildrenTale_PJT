@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link
+  href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="{% static 'accounts/fonts/icomoon/style.css' %}" />
+
+<link rel="stylesheet" href="{% static 'accounts/css/bootstrap.min.css' %}" />
+<link rel="stylesheet" href="{% static 'accounts/css/jquery-ui.css' %}" />
+<link rel="stylesheet" href="{% static 'accounts/css/owl.carousel.min.css' %}" />
+<link
+  rel="stylesheet"
+  href="{% static 'accounts/css/owl.theme.default.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'accounts/css/owl.theme.default.min.css' %}"
+/>
+
+<link
+  rel="stylesheet"
+  href="{% static 'accounts/css/jquery.fancybox.min.css' %}"
+/>
+
+<link
+  rel="stylesheet"
+  href="{% static 'accounts/css/bootstrap-datepicker.css' %}"
+/>
+
+<link
+  rel="stylesheet"
+  href="{% static 'accounts/fonts/flaticon/font/flaticon.css' %}"
+/>
+
+<link rel="stylesheet" href="{% static 'accounts/css/aos.css' %}" />
+
+<link rel="stylesheet" href="{% static 'accounts/css/style.css' %}" />
+
+<!--화면-->
+<div class="container mt-4">
+  <div class="row">
+      <!-- Default form register -->
+      <form class="text-center p-3" method="post" style="font-family: sans-serif;">
+        {% csrf_token %}
+          <h2 class="heading mb-4">회원가입</h2>
+          <!-- {{ form.as_p }} -->
+          {% for field in form %}
+          <p>
+              {{ field.label_tag }}
+              {{ field }}
+              <!-- {% if field.help_text %}
+                <small style="color: grey">{{ field.help_text }}</small>
+              {% endif %} -->
+              {% for error in field.errors %}
+                <p style="color: red">{{ error }}</p>
+              {% endfor %}
+          </p>
+          {% endfor %}
+
+          <!-- Sign up button -->
+          {% comment %} {% if checked %} {% endcomment %}
+          <button class="btn btn-primary my-4 btn-block" type="submit">가입하기</button>
+          <p>
+              "가입하기" 단추를 누르면
+              <a href="" target="_blank">Ari 이용약관</a>에 동의하는 것으로 간주합니다.
+          </p>
+      </form>
+      <!-- Default form register -->
+
+  </div><!--row-->
+</div><!--container-->
+
+{% block script %}
+<script type="text/javascript">
+function get_ip(json) {
+  $("#id_location").val(json.ip);
+}
+</script>
+<script src="https://api.ipify.org?format=jsonp&callback=get_ip"></script>
+{% endblock %}
+
+{% endblock  %}

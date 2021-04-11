@@ -1,0 +1,113 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<link
+  href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="{% static 'books/fonts/icomoon/style.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/bootstrap.min.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/jquery-ui.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/owl.carousel.min.css' %}" />
+<link
+  rel="stylesheet"
+  href="{% static 'books/css/owl.theme.default.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'books/css/owl.theme.default.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'books/css/jquery.fancybox.min.css' %}"
+/>
+<link rel="stylesheet" href="{% static 'books/css/style.css' %}" />
+
+<!--화면 시작-->
+<div class="container">
+  <div class="row align-items-center" >
+    <!--user.mode가 참이면 어린이모드-->
+    {% if request.user.mode %} {% else %}
+    <div
+      id="index_box"
+      class="col"
+      onclick="location.href='{% url 'books:shot_mode' %}'"
+    >
+      <div id="index_icon" class="row" style="text-align: center">
+        <img id="home-icon" src={% static 'svg/camera.svg'%}>
+      </div>
+      <div id="index_label" class="row"><h4>책 촬영</h4></div>
+    </div>
+    <div
+      id="index_box"
+      class="col"
+      onclick="location.href='{% url 'books:record' %}'"
+    >
+      <div id="index_icon" class="row">
+        <img id="home-icon" src={% static 'svg/podcast.svg'%}>
+      </div>
+      <div id="index_label" class="row"><h4>음성 녹음</h4></div>
+    </div>
+    {% endif %}
+  </div>
+  <div class="row align-items-center">
+    <div
+      id="index_box"
+      class="col"
+      onclick="location.href='{% url 'books:library' %}'"
+    >
+      <div id="index_icon" class="row">
+        <img id="home-icon" src={% static 'svg/books.svg'%}>
+      </div>
+      <div id="index_label" class="row"><h4>책장</h4></div>
+    </div>
+    {% if request.user.mode %}
+    <div
+      id="index_box"
+      class="col"
+      onclick="location.href='{% url 'books:playground' %}'"
+    >
+      <div id="index_icon" class="row">
+        <img id="home-icon" src={% static 'svg/joystick.svg'%}>
+      </div>
+      <div id="index_label" class="row"><h4>놀이터</h4></div>
+    </div>
+    {% else %}
+    <div
+      id="index_box"
+      class="col"
+      onclick="location.href='{% url 'books:mode' %}'"
+    >
+      <div id="index_icon" class="row">
+        <img id="home-icon" src={% static 'svg/padlock.svg'%}>
+      </div>
+      <div id="index_label" class="row"><h4>어린이모드</h4></div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+  img#home-icon {
+    width: 80%;
+    object-fit: contain;
+    display: block;
+    margin: 0px auto;
+  }
+  #index_box {
+    text-align: center;
+    cursor: pointer;
+    padding: 5% 10%;
+  }
+  #index_icon {
+    text-align: center;
+  }
+  #index_label {
+    text-align: center;
+    padding-top: 2rem;
+    color: indigo;
+  }
+  #index_label > h4{
+    font-family: 'Jua',  sans-serif;
+  }
+</style>
+{% endblock %}

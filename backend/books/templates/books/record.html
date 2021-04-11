@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<link
+  href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="{% static 'books/fonts/icomoon/style.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/bootstrap.min.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/jquery-ui.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/owl.carousel.min.css' %}" />
+<link
+  rel="stylesheet"
+  href="{% static 'books/css/owl.theme.default.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'books/css/owl.theme.default.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'books/css/jquery.fancybox.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'books/css/bootstrap-datepicker.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'books/fonts/flaticon/font/flaticon.css' %}"
+/>
+<link rel="stylesheet" href="{% static 'books/css/aos.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/style.css' %}" />
+
+<div id="username" style="display: none;">{{ request.user.username }}</div>
+<!-- voice_box id값 지우면 안됨!!! .js에서 참조함!! -->
+<!--
+
+<div id="voice_box">
+  {% csrf_token %}
+  <h1>Voice Recorder</h1>
+  <p>목소리 등록을 위해 아래 문장을 읽어주세요.</p>
+  <h4 style="color: blue;">장식하는 천자만홍이 어디 있으며 인생을 풍부하게 하는 온갖 과실이 어디 있으랴? 이상! 우리의 청춘이 가장 많이 품고 있는 이상! 이것이야말로 무한한 가치를 가진 것이다.</h4>
+
+  <div id="controls">
+    <button id="recordButton">Record</button>
+    <button id="pauseButton" disabled>Pause</button>
+    <button id="stopButton" disabled>Stop</button>
+  </div>
+  <div id="formats">Format: start recording to see sample rate</div>
+  <p><strong>Recordings:</strong></p>
+  <ol id="recordingsList"></ol>
+
+
+  <form id="form" action="" method="POST">
+    <input type="text" id="speacker_name_input" label="speacker_name" placeholder="목소리 이름을 입력해주세요." style="display: none;">
+    다운로드한 파일을 업로드 해주세요.
+    <input type="file" id="voice_pattern_url">
+    <button id="record_save_btn" class="btn btn-link btn-light" style="display: none;">
+      저장하기
+    </button>
+  </form>
+</div>
+-->
+
+<!-- 녹음하기 -->
+
+<div class="card mt-5 pt-5" style="width: 18rem; margin-left: auto; margin-right: auto;">
+  <!-- <img src="..." class="card-img-top" alt="..."> -->
+  <div class="card-body" style="text-align: center;>
+    <h5 class="card-title">아름다운 목소리를 녹음해주세요</h5>
+    <p class="card-text">이 목소리로 아이가 책을 들을 수 있어요!</p>
+    <a id="record_btn" href="#" class="btn btn-primary">녹음하기</a>
+  </div>
+</div>
+
+<div class="card mt-5 pt-5" style="width: 25rem; margin-left: auto; margin-right: auto;">
+  <div class="card-body" style="text-align: center;"">
+    <!-- 여기를 변경 -->
+    {% if voice_patterns %}
+      {% for pattern in voice_patterns %}
+        <p class="card-text" style="font-weight: bold;">녹음1
+          <audio controls src="/media/{{ pattern.voice_pattern_url }}" type="audio/ogg"></audio>
+        </p>
+      {% endfor %}
+    {% else %}
+    <p class="card-text" style="font-weight: bold;">저장된 음성이 없습니다.</p>
+    {% endif %}
+  </div>
+</div>
+
+<!-- 녹음 리스트 관리하기 -->
+
+<!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
+<script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+<!-- jQuery -->
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!-- <script src="{% static 'js/recorder.js' %}"></script> -->
+<script src="https://npmcdn.com/axios/dist/axios.min.js"></script>
+
+<script>
+  var record_btn = document.getElementById("record_btn");
+  
+  
+  record_btn.addEventListener("click", toRecord);
+  
+  function toRecord() {
+
+  	
+  	var username = document.getElementById("username")
+  
+   	console.log(username.innerText)
+  
+  	ARIAPP.recording(username.innerText);
+    window.location.replace('http://j4a402.p.ssafy.io:8000/record/result/');
+   }
+</script>
+
+<style>
+  .wrapper{
+    padding: 5%
+  }
+  #voice_box {
+    margin: auto;
+    /* text-align: center;
+    padding-left: 20rem;
+    padding-right: 20rem; */
+  }
+</style>
+{% endblock %}

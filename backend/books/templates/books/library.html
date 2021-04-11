@@ -1,0 +1,65 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="{% static 'books/fonts/icomoon/style.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/bootstrap.min.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/jquery-ui.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/owl.carousel.min.css' %}" />
+<link
+  rel="stylesheet"
+  href="{% static 'books/css/owl.theme.default.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'books/css/owl.theme.default.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'books/css/jquery.fancybox.min.css' %}"
+/>
+<link rel="stylesheet" href="{% static 'books/css/aos.css' %}" />
+<link rel="stylesheet" href="{% static 'books/css/style.css' %}" />
+
+<!--화면 시작-->
+<a
+  class="btn btn-danger"
+  style="float: right; margin-right: 3%"
+  href="{% url 'books:library_all' %}"
+  >열린 책장</a
+>
+<h1 class="heading" style="color: steelblue">나의 책장</h1>
+<div class="library flex-wrap" style="display: flex; align-content: center">
+  {% for book in books %}
+  <!--책 한 권-->
+  <div
+    class="book"
+    onclick="location.href='{% url 'books:library_mybook' book.pk %}'"
+  >
+    <img src="/media/{{ book.thumbnail_url }}" />
+    <div class="title">{{ book.title | truncatechars:10 }}</div>
+  </div>
+  {% endfor %}
+</div>
+
+<style>
+  .library {
+    padding: 2%;
+  }
+  .book {
+    background: ghostwhite;
+    padding: 10px;
+    margin: 10px;
+  }
+  .title {
+    color: steelblue;
+  }
+  .book>img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+  }
+</style>
+{% endblock %}

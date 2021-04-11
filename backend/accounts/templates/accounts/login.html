@@ -1,0 +1,119 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<link
+  href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="{% static 'accounts/fonts/icomoon/style.css' %}" />
+
+<link rel="stylesheet" href="{% static 'accounts/css/bootstrap.min.css' %}" />
+<link rel="stylesheet" href="{% static 'accounts/css/jquery-ui.css' %}" />
+<link
+  rel="stylesheet"
+  href="{% static 'accounts/css/owl.carousel.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'accounts/css/owl.theme.default.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'accounts/css/owl.theme.default.min.css' %}"
+/>
+
+<link
+  rel="stylesheet"
+  href="{% static 'accounts/css/jquery.fancybox.min.css' %}"
+/>
+
+<link
+  rel="stylesheet"
+  href="{% static 'accounts/css/bootstrap-datepicker.css' %}"
+/>
+
+<link
+  rel="stylesheet"
+  href="{% static 'accounts/fonts/flaticon/font/flaticon.css' %}"
+/>
+
+<link rel="stylesheet" href="{% static 'accounts/css/aos.css' %}" />
+
+<link rel="stylesheet" href="{% static 'accounts/css/style.css' %}" />
+<div class="container mt-4">
+  <div class="row">
+    <form
+      method="post"
+      class="text-center p-5"
+      action="{% url 'accounts:login' %}"
+    >
+      <h4 class="heading mb-4">Ari</h4>
+      <!--로고로 대체하는게 좋을듯-->
+
+      {% csrf_token %}
+      <p>
+        <input
+          id="id_username"
+          name="username"
+          placeholder="아이디"
+          type="text"
+          class="form-control"
+        />
+      </p>
+      <p>
+        <input
+          id="id_password"
+          name="password"
+          placeholder="비밀번호"
+          type="password"
+          class="form-control"
+        />
+      </p>
+      {% if form.errors %}
+      <p class="text-danger">
+        가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.
+      </p>
+      {% endif %}
+
+      <!-- {% for field in form %}
+                    <p>
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.help_text %}
+                          <small style="color: grey">{{ field.help_text }}</small>
+                        {% endif %}
+                        {% for error in field.errors %}
+                          <p style="color: red">{{ error }}</p>
+                        {% endfor %}
+                    </p>
+                {% endfor %} -->
+
+      <!-- Sign in button -->
+      <button class="btn btn-primary btn-block my-4" type="submit">
+        로그인
+      </button>
+      <input type="hidden" name="next" value="{{ next }}" />
+
+      <!-- Register -->
+      <p>
+        회원이 아니신가요?
+        <a href="{% url 'accounts:signup' %}">가입하기</a>
+      </p>
+
+      <!-- Social login -->
+      <!-- <p>or sign in with:</p> -->
+    </form>
+  </div>
+</div>
+<!-- <div id="box">
+  <h1 style="">로그인</h1>
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="button submit" class="btn" style="background-color: #87cefa; color: white;">로그인</button>
+  </form>
+</div>
+<style>
+  #box {
+    text-align: center;
+  }
+</style> -->
+{% endblock %}

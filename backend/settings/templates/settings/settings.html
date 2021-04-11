@@ -1,0 +1,415 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<link
+  href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap"
+  rel="stylesheet"
+/>
+
+<link rel="stylesheet" href="{% static 'settings/css/bootstrap.min.css' %}" />
+<link rel="stylesheet" href="{% static 'settings/css/jquery-ui.css' %}" />
+<link
+  rel="stylesheet"
+  href="{% static 'settings/css/owl.carousel.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'settings/css/owl.theme.default.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'settings/css/owl.theme.default.min.css' %}"
+/>
+
+<link
+  rel="stylesheet"
+  href="{% static 'settings/css/jquery.fancybox.min.css' %}"
+/>
+
+<link rel="stylesheet" href="{% static 'settings/css/aos.css' %}" />
+
+<link rel="stylesheet" href="{% static 'settings/css/style.css' %}" />
+
+<!--화면 시작-->
+
+<div class="accordion" id="settingAccordion">
+  <div class="card">
+    <!-- 1. 메인언어 설정 -->
+    <div class="card-header" id="headingLanguage">
+      <button
+        class="btn collapsed"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapseLanguage"
+        aria-expanded="false"
+        aria-controls="collapseLanguage"
+      >
+        <h3 class="heading">메인 언어</h3>
+      </button>
+    </div>
+
+    <div
+      id="collapseLanguage"
+      class="collapse"
+      aria-labelledby="headingLanguage"
+      data-parent="#settingAccordion"
+    >
+      <div class="card-body">
+        <h5 class="sub-menu">
+          언어 선택
+          <span
+            class="btn-collapse"
+            type="button"
+            data-toggle="collapse"
+            data-target="#langCollapse"
+            aria-expanded="false"
+            aria-controls="langCollapse"
+          >
+            <span id="lang-selection"></span>
+            <span class="arrow" style="paddig-left=10px;"> > </span>
+          </span>
+        </h5>
+        <div class="collapse" id="langCollapse">
+          <div class="card card-body" style="padding: 0px">
+            <div>
+              <h6 id="KO" class="lang-sel">한국어</h6>
+              <h6 id="EN" class="lang-sel">English</h6>
+              <h6 id="AR" class="lang-sel">العربية</h6>
+              <h6 id="JA" class="lang-sel">日本語</h6>
+              <h6 id="VI" class="lang-sel">Tiếng Việt</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 모드 설정 -->
+  <div class="card">
+    <div class="card-header" id="headingKidMode">
+      <button
+        class="btn collapsed"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapseKidMode"
+        aria-expanded="false"
+        aria-controls="collapseKidMode"
+      >
+        <h3 class="heading">어린이 모드</h3>
+      </button>
+    </div>
+    <div
+      id="collapseKidMode"
+      class="collapse"
+      aria-labelledby="headingKidMode"
+      data-parent="#settingAccordion"
+    >
+      <div class="card-body">
+        <h5 class="sub-menu" style="float: right">
+          <!--패딩 문제!!!-->
+          <div class="btn-group" role="group" aria-label="toggleMode">
+            <button
+              type="button"
+              id="adult-mode"
+              class="btn btn-outline-danger user-mode"
+              data-toggle="button"
+              aria-pressed="false"
+              autocomplete="off"
+            >
+              일반 모드
+            </button>
+            <button
+              type="button"
+              id="kid-mode"
+              class="btn btn-outline-danger user-mode"
+              data-toggle="button"
+              aria-pressed="false"
+              autocomplete="off"
+            >
+              어린이 모드
+            </button>
+          </div>
+        </h5>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. 목소리 설정 -->
+  <div class="card">
+    <div class="card-header" id="headingVoice">
+      <button
+        class="btn collapsed"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapseVoice"
+        aria-expanded="false"
+        aria-controls="collapseVoice"
+      >
+        <h3 class="heading">목소리</h3>
+      </button>
+    </div>
+    <div
+      id="collapseVoice"
+      class="collapse"
+      aria-labelledby="headingVoice"
+      data-parent="#settingAccordion"
+    >
+      <div class="card-body">
+        <div class="settings_item">목소리 설정 내용~~~~~~~~~~@@@@@@</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 회원정보 -->
+  <div class="card">
+    <div class="card-header" id="headingProfile">
+      <button
+        class="btn collapsed"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapseProfile"
+        aria-expanded="false"
+        aria-controls="collapseProfile"
+      >
+        <h3 class="heading">회원 정보</h3>
+      </button>
+    </div>
+    <div
+      id="collapseProfile"
+      class="collapse"
+      aria-labelledby="headingProfile"
+      data-parent="#settingAccordion"
+    >
+      <div class="card-body">
+        <div>
+          <div
+                
+                type="button"
+                data-toggle="collapse"
+                data-target="#profileCollapse"
+                aria-expanded="false"
+                aria-controls="profileCollapse"
+          >
+            <h5 class="sub-menu">
+            회원정보 조회
+              <span
+                class="btn-collapse arrow"
+                type="button"
+                data-toggle="collapse"
+                data-target="#profileCollapse"
+                aria-expanded="false"
+                aria-controls="profileCollapse"
+              >
+                ></span
+              >
+            </h5>
+            <div class="collapse" id="profileCollapse">
+              <div class="card card-body" style="padding: 0px">
+                <h6>아이디&emsp;{{ request.user.username }}</h6>
+                <h6>이메일&emsp;{{ request.user.email }}</h6>
+                <h6>자녀 정보&emsp;{{ request.user.birth_year }} 출생</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div onclick="location.href='{% url 'accounts:profile' %}'">
+          <h5 class="sub-menu">
+            회원정보 수정
+            <span
+              class="btn-collapse arrow"
+              >></span
+            >
+          </h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--로그아웃-->
+  <div class="card">
+    <div class="card-header" id="headingSignout">
+      <button
+        class="btn collapsed"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapseSignout"
+        aria-expanded="false"
+        aria-controls="collapseSignout"
+      >
+        <h3 class="heading">로그아웃</h3>
+      </button>
+    </div>
+    <div
+      id="collapseSignout"
+      class="collapse"
+      aria-labelledby="headingSignout"
+      data-parent="#settingAccordion"
+    >
+      <div class="card-body">
+        <h5 class="sub-menu" style="float: right">
+          <form
+            action="{% url 'accounts:logout' %}"
+            method="POST"
+            class="d-inline"
+          >
+            {% csrf_token %}
+            <button class="btn btn-collapse btn-outline-danger">
+              로그아웃
+            </button>
+          </form>
+        </h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  var 
+  var btn = document.getElementById("mode_button")
+  var text = btn.innerText
+  btn.addEventListener('click', function(event) {
+    axios.get('/mode')
+      .then( function (response) {
+        console.log(response.data)
+        if (text === '어린이모드') {
+          console.log('success');
+          btn.innerText.replace('어린이모드', '일반모드')
+        } else {
+          btn.innerText.replace('일반모드', '어린이모드')
+        }
+      }
+      )
+  })
+
+  function kidMode(state, request) {
+                //$.get('YOUR_VIEW_HERE/'+pk+'/', function (data) {
+                //    alert("counter updated!");
+                //});
+    if(state == 1){
+      console.log("어린이 모드");
+    }
+    console.log(request);
+  }
+</script> -->
+
+<style>
+  .accordion {
+    margin: 0% 8% 15%;
+  }
+  button.btn.collapsed h3 {
+    color: #686868;
+  }
+  div.card-body {
+    padding: 1% 3%;
+  }
+  h5.sub-menu {
+    padding: 5%;
+  }
+  h6 {
+    margin-bottom: 0px;
+    padding: 3%;
+  }
+  .btn-collapse {
+    float: right;
+  }
+  .selected {
+    background: #e84a5f;
+    color: white;
+  }
+</style>
+
+<script src="{% static 'settings/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'settings/js/jquery-ui.js' %}"></script>
+<script src="{% static 'settings/js/popper.min.js' %}"></script>
+<script src="{% static 'settings/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'settings/js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'settings/js/jquery.countdown.min.js' %}"></script>
+<script src="{% static 'settings/js/jquery.easing.1.3.js' %}"></script>
+<script src="{% static 'settings/js/aos.js' %}"></script>
+<script src="{% static 'settings/js/jquery.fancybox.min.js' %}"></script>
+<script src="{% static 'settings/js/jquery.sticky.js' %}"></script>
+<script src="{% static 'settings/js/isotope.pkgd.min.js' %}"></script>
+<script src=" {% static 'settings/js/main.js' %}"></script>
+
+<script type="text/javascript">
+  var mode = '{{request.user.mode}}'; //어린이 모드인지 확인
+  if (mode == 'True') {
+    $('#kid-mode').addClass('active');
+  } else {
+    $('#adult-mode').addClass('active');
+  }
+
+  var langs = {
+    KO: '한국어',
+    EN: 'English',
+    AR: 'العربية',
+    JA: '日本語',
+    VI: 'Tiếng Việt',
+  };
+
+  var lc = '{{request.user.lang_choices}}';
+  for (var l in langs) {
+    if (l == lc) {
+      //lang_choice를 찾으면 button에 해당하는 값 넣어주기
+      $('#lang-selection').text(langs[l]);
+      $('#' + l).addClass('selected');
+    }
+    $('#' + l).text(langs[l]);
+  }
+
+  $('.btn-collapse').click(function () {
+    //btn 글자가 '>'에서  '▼' 이런걸로 바뀌면 예쁠 거 같다
+  });
+
+  $('.lang-sel').click(function () {
+    var lang = $(this).attr('id');
+    $.ajax({
+      type: 'GET',
+      url: "{% url 'settings:lang' %}",
+      data: { lang: lang },
+      success: function (response) {
+        //언어 설정 바꿔줘야 함 - li에서 강조항목 변경!
+        $('.lang-sel').removeClass('selected');
+        $('#' + response).addClass('selected'); //강조 항목 변경으로다가!!!!
+
+        $('#lang-selection').text(langs[response]);
+      },
+      error: function (request, status, error) {
+        console.log(request.status + ', ' + error);
+      },
+    });
+  });
+
+  //mode selection button click event
+  $('.btn.user-mode').click(function () {
+    var text = $(this).attr('id');
+    $.ajax({
+      // .like 버튼을 클릭하면 <새로고침> 없이 ajax로 서버와 통신하겠다.
+      type: 'GET', // 데이터를 전송하는 방법을 지정
+      url: "{% url 'settings:mode' %}", // 통신할 url을 지정
+      data: { state: text }, // 서버로 데이터 전송시 옵션
+      //dataType: "json", // 서버측에서 전송한 데이터를 어떤 형식의 데이터로서 해석할 것인가를 지정, 없으면 알아서 판단
+      // 서버측에서 전송한 Response 데이터 형식 (json)
+      success: function (response) {
+        // 통신 성공
+        //{% if request.user.mode %} 어린이모드 {% else %} 일반모드 {% endif %}
+        if (response == 'True') {
+          //어린이모드
+          console.log('kidmode');
+          //manually add the .active class and aria-pressed="true" to the <button>
+          $('#kid-mode').addClass('active');
+          $('#adult-mode').removeClass('active');
+        } else {
+          //일반모드
+          console.log('adultmode');
+          $('#adult-mode').addClass('active');
+          $('#kid-mode').removeClass('active');
+        }
+      },
+      error: function (request, status, error) {
+        // 통신 실패시
+        console.log(request.status + ', ' + error);
+      },
+    });
+  });
+</script>
+{% endblock %}

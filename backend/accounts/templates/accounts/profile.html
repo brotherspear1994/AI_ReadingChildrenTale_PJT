@@ -1,0 +1,207 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<link
+  href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="{% static 'settings/fonts/icomoon/style.css' %}" />
+
+<link rel="stylesheet" href="{% static 'settings/css/bootstrap.min.css' %}" />
+<link rel="stylesheet" href="{% static 'settings/css/jquery-ui.css' %}" />
+<link
+  rel="stylesheet"
+  href="{% static 'settings/css/owl.carousel.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'settings/css/owl.theme.default.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'settings/css/owl.theme.default.min.css' %}"
+/>
+
+<link
+  rel="stylesheet"
+  href="{% static 'settings/css/jquery.fancybox.min.css' %}"
+/>
+
+<link
+  rel="stylesheet"
+  href="{% static 'settings/css/bootstrap-datepicker.css' %}"
+/>
+
+<link
+  rel="stylesheet"
+  href="{% static 'settings/fonts/flaticon/font/flaticon.css' %}"
+/>
+
+<link rel="stylesheet" href="{% static 'settings/css/aos.css' %}" />
+
+<link rel="stylesheet" href="{% static 'settings/css/style.css' %}" />
+
+<!--화면 시작-->
+<!--비밀번호 수정-->
+<div style="margin: 8%">
+  <div>
+    <span>
+      <h3 class="heading">비밀번호 변경</h3>
+    </span>
+    <small class="text-danger"
+      >최소 8개의 숫자와 문자 또는 특수기호를 입력해주세요.</small
+    >
+    <form method="POST" novalidate id="pw-form">
+      {% csrf_token %}
+      <div id="old-pw" class="pw">
+        <label
+          name="label_old_password"
+          for="{{ form.old_password.id_for_label }}"
+          >{{ form.old_password.label }}</label
+        >
+        {{ form.old_password }}
+        <script type="text/javascript">
+          if (document.getElementsByName('old_password')[0].value != '') {
+            document
+              .getElementsByName('label_old_password')[0]
+              .setAttribute('class', 'active');
+          }
+        </script>
+        {% if form.old_password.errors %}
+        <script type="text/javascript">
+          document
+            .getElementsByName('old_password')[0]
+            .setAttribute('class', 'form-control is-invalid');
+        </script>
+        {% for error in form.old_password.errors %}
+        <div class="invalid-feedback">{{ error }}</div>
+        {% endfor %} {% endif %}
+      </div>
+      <div id="new-pw" class="pw">
+        <label
+          name="label_new_password1"
+          for="{{ form.new_password1.id_for_label }}"
+          >{{ form.new_password1.label }}</label
+        >
+        {{ form.new_password1 }}
+        <script type="text/javascript">
+          if (document.getElementsByName('new_password1')[0].value != '') {
+            document
+              .getElementsByName('label_new_password1')[0]
+              .setAttribute('class', 'active');
+          }
+        </script>
+        {% if form.new_password1.errors %}
+        <script type="text/javascript">
+          document
+            .getElementsByName('new_password1')[0]
+            .setAttribute('class', 'form-control is-invalid');
+        </script>
+        {% for error in form.new_password1.errors %}
+        <div class="invalid-feedback">{{ error }}</div>
+        {% endfor %} {% endif %}
+      </div>
+      <div id="new-pw-confirm" class="pw">
+        <label
+          name="label_new_password2"
+          for="{{ form.new_password2.id_for_label }}"
+          >{{ form.new_password2.label }}</label
+        >
+        {{ form.new_password2 }}
+        <script type="text/javascript">
+          if (document.getElementsByName('new_password2')[0].value != '') {
+            document
+              .getElementsByName('label_new_password2')[0]
+              .setAttribute('class', 'active');
+          }
+        </script>
+        {% if form.new_password2.errors %}
+        <script type="text/javascript">
+          document
+            .getElementsByName('new_password2')[0]
+            .setAttribute('class', 'form-control is-invalid');
+        </script>
+        {% for error in form.new_password2.errors %}
+        <div style="white-space: nowrap" class="invalid-feedback">
+          {{ error }}
+        </div>
+        {% endfor %} {% endif %}
+      </div>
+      <button class="btn btn-danger confirm" type="submit" style="float: right">
+        비밀번호 변경
+      </button>
+    </form>
+    <button
+      class="btn btn-outline-danger confirm"
+      style="float: right"
+      onclick="location.href='{% url 'settings:settings' %}'"
+    >
+      뒤로가기
+    </button>
+  </div>
+  <div style="padding-top: 5rem"></div>
+
+  <!--회원탈퇴-->
+  <ul>
+    <li>
+      <small>
+        Ari를 더이상 이용하지 않는다면
+
+        <a
+          class=""
+          data-toggle="collapse"
+          href="#collapseDelete"
+          role="button"
+          aria-expanded="false"
+          aria-controls="collapseDelete"
+        >
+          회원 탈퇴 하기
+        </a>
+      </small>
+    </li>
+  </ul>
+  <div class="collapse" id="collapseDelete">
+    <h3 class="heading text-dark">회원 탈퇴</h3>
+    <p>
+      <span class="text-danger">탈퇴한 아이디는 어떤 이유로도 복구가 불가</span
+      >하오니 신중하게 선택하시기 바랍니다.
+    </p>
+
+    <form action="{% url 'accounts:delete' %}" method="POST">
+      {% csrf_token %}
+      <div>
+        안내 사항을 확인하였으며, 이에 동의한다면 클릭하십시오.
+        <button class="btn-sm btn-dark confirm" type="submit">회원탈퇴</button>
+      </div>
+    </form>
+  </div>
+</div>
+<style>
+  #pw-form {
+    margin-left: 6%;
+    margin-right: 6%;
+  }
+  button.confirm {
+    margin: 2%;
+  }
+  .pw {
+    margin: 5% 0%;
+  }
+</style>
+<!-- 로그인 성공 메시지 -->
+{% if messages %} {% for message in messages %}
+<h5 style="color: crimson">{{ message.message }}</h5>
+{% endfor %} {% endif %}
+
+<script src="{% static 'settings/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'settings/js/jquery-ui.js' %}"></script>
+<script src="{% static 'settings/js/popper.min.js' %}"></script>
+<script src="{% static 'settings/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'settings/js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'settings/js/jquery.countdown.min.js' %}"></script>
+<script src="{% static 'settings/js/jquery.easing.1.3.js' %}"></script>
+<script src="{% static 'settings/js/aos.js' %}"></script>
+<script src="{% static 'settings/js/jquery.fancybox.min.js' %}"></script>
+<script src="{% static 'settings/js/jquery.sticky.js' %}"></script>
+<script src="{% static 'settings/js/isotope.pkgd.min.js' %}"></script>
+<script src=" {% static 'settings/js/main.js' %}"></script>
+
+{% endblock %}

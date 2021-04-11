@@ -1,0 +1,107 @@
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+#upload {
+    opacity: 0;
+}
+
+#upload-label {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+}
+
+.image-area {
+    border: 2px dashed rgba(255, 255, 255, 0.7);
+    padding: 1rem;
+    position: relative;
+}
+
+.image-area::before {
+    content: 'Uploaded image result';
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.8rem;
+    z-index: 1;
+}
+
+.image-area img {
+    z-index: 2;
+    width: 100%;
+    height: 400px;
+    object-fit:contain;
+    position: relative;
+}
+
+.checkbox-lg .custom-control-label {
+  padding-top: 13px;
+  padding-left: 10px;
+}
+
+.checkbox-xl .custom-control-label::before,
+.checkbox-xl .custom-control-label::after {
+  top: 1.2rem;
+  width: 1.85rem;
+  height: 1.85rem;
+}
+
+.checkbox-xl .custom-control-label {
+  padding-top: 23px;
+  padding-left: 10px;
+}
+
+.fixed-card-height {
+    height : 700px;
+}
+
+.info-button-height {
+    height : 50px;
+}
+.wrapper {
+    height: 410px;
+    overflow: scroll;
+}
+
+/* loading */
+.loader {
+  border: 16px solid #D4D4D4;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  background-color: transparent;
+  height: 120px;
+    position: fixed;
+    top:100px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 99999999;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.loader-bg{
+    position: fixed;
+    background: white;
+    height : 100vh;
+    top: 0;
+    width: 100vw;
+    opacity: 0.33;
+    margin: auto;
+    z-index: 99999997;
+}
+
