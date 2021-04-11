@@ -11,8 +11,6 @@ import sys
 import json
 import urllib.request
 
-# client_id = "t6TKlUbfHk2gsyHQKcYt" # 개발자센터에서 발급받은 Client ID 값
-# client_secret = "K5mC720BS1" # 개발자센터에서 발급받은 Client Secret 값
 
 class speak_image():
     def __init__(self):
