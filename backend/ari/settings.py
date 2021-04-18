@@ -105,19 +105,7 @@ WSGI_APPLICATION = 'ari.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ari',
-        'USER': 'ari',
-        'PASSWORD': 'ssafy',
-        'HOST': 'j4a402.p.ssafy.io',
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': 'SET sql_mode="STRICT_TRANS_TABLES"'
-        }
-    }
-}
+# 데이터 베이스 연결 설정자리
 
 
 # Password validation
